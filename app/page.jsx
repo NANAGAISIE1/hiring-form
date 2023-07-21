@@ -11,7 +11,7 @@ import { ModuleButton } from "./components/NavBar";
 export default function Home() {
   const typewriterEffects = ["We are Hiring", "Apply Now", "Join Us Today"];
   return (
-    <main className="block pt-24 mx-4 space-y-6">
+    <main className="block pt-24 mx-4 space-y-6 mb-6">
       <div>
         <h1 className="text-3xl mb-2">
           <span className="text-green-800">Hello</span> There
@@ -37,7 +37,6 @@ export default function Home() {
           alt="hire"
           width={1200}
           height={800}
-          objectFit="content"
           className="rounded-lg shadow-lg w-full"
         />
       </div>

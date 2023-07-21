@@ -10,12 +10,11 @@ const Footer = () => {
         alt="get hired"
         className="w-full lg:max-w-md"
       />
-      <footer className="w-full bg-slate-900 text-white">
-        <span>
+      <footer className="w-full bg-black/95 text-white border-t-2 border-white">
+        <span className="justify-center text-sm p-1 w-full flex">
           {" "}
-          &copy; {new Date().getFullYear()} Company Ventures.{" "}
-          <br className="md:hidden" />
-          All Rights Reserved.
+          &copy; {new Date().getFullYear()} Company Ventures. All Rights
+          Reserved.
         </span>
       </footer>
     </>
