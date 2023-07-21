@@ -4,11 +4,13 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { format } from "date-fns";
+import { CalendarIcon } from "lucide-react";
+import { Loader2 } from "lucide-react";
 
+import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 import { cn } from "../lib/utils";
 import { Input } from "./ui/input";
-import { CalendarIcon } from "lucide-react";
 import { Calendar } from "./ui/calendar";
 import { toast } from "./ui/use-toast";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
@@ -19,7 +21,6 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from "./ui/form";
 import {
   Select,
@@ -126,7 +127,7 @@ export function ApplicationForm() {
                     <Button
                       variant="outline"
                       className={cn(
-                        "m-auto pl-3 text-left font-normal w-full",
+                        "m-auto pl-3 text-left font-normal w-full ",
                         !field.value && "text-muted-foreground"
                       )}
                     >
@@ -139,7 +140,7 @@ export function ApplicationForm() {
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
+                <PopoverContent className="w-auto p-0 " align="start">
                   <Calendar
                     mode="single"
                     selected={field.value}
@@ -161,7 +162,7 @@ export function ApplicationForm() {
             <FormItem>
               <FormLabel className="hidden">Phone Number</FormLabel>
               <FormControl>
-                <Input placeholder="Phone Number" {...field} />
+                <Input type="tel" placeholder="Phone Number" {...field} />
               </FormControl>
               <FormDescription></FormDescription>
             </FormItem>
@@ -174,7 +175,7 @@ export function ApplicationForm() {
             <FormItem>
               <FormLabel className="hidden">Email</FormLabel>
               <FormControl>
-                <Input placeholder="Email" {...field} />
+                <Input type="email" placeholder="Email" {...field} />
               </FormControl>
             </FormItem>
           )}
@@ -184,7 +185,9 @@ export function ApplicationForm() {
           name="homeAddress"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="hidden">Home Address</FormLabel>
+              <FormLabel type="text" className="hidden">
+                Home Address
+              </FormLabel>
               <FormControl>
                 <Input placeholder="Home Address" {...field} />
               </FormControl>
@@ -198,32 +201,33 @@ export function ApplicationForm() {
             <FormItem>
               <FormLabel className="hidden">State</FormLabel>
               <FormControl>
-                <Input placeholder="State" {...field} />
+                <Input type="text" placeholder="State" {...field} />
               </FormControl>
             </FormItem>
           )}
         />
-        <div className="flex justify-between w-full grid-cols-2">
+        <div className="flex justify-between w-full grid-cols-2 gap-5 ">
           <FormField
             control={form.control}
             name="city"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="w-full">
                 <FormLabel className="hidden">City</FormLabel>
                 <FormControl>
-                  <Input placeholder="City" {...field} />
+                  <Input type="text" placeholder="City" {...field} />
                 </FormControl>
               </FormItem>
             )}
           />
           <FormField
+            className="!w-full"
             control={form.control}
             name="zipCode"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="w-full">
                 <FormLabel className="hidden">Zip Code</FormLabel>
                 <FormControl>
-                  <Input placeholder="Zip Code" {...field} />
+                  <Input type="text" placeholder="Zip Code" {...field} />
                 </FormControl>
               </FormItem>
             )}
@@ -259,7 +263,7 @@ export function ApplicationForm() {
                 Valid Identification Card (Front)
               </FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input type="file" {...field} />
               </FormControl>
             </FormItem>
           )}
@@ -273,13 +277,35 @@ export function ApplicationForm() {
                 Valid Identification Card (Back)
               </FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input type="file" {...field} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="description"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="hidden">
+                Why should you be employed?
+              </FormLabel>
+              <FormControl>
+                <Textarea
+                  placeholder="Give a reason why you should be employed"
+                  className="resize-none h-28"
+                  {...field}
+                />
               </FormControl>
             </FormItem>
           )}
         />
         <Button type="submit" className="m-auto w-full">
           Submit
+        </Button>
+        <Button disabled className="m-auto w-full">
+          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          Please wait
         </Button>
       </form>
     </Form>
