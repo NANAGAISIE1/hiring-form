@@ -41,7 +41,7 @@ export default function Home() {
         />
       </div>
       <div className="space-y-2">
-        <h2 className="text-xl text-red-600">Employment Application</h2>
+        <h2 className="text-xl text-black font-bold">Employment Application</h2>
         <p className="text-base">
           Fill the form below accurately indicating your potentials and
           sustainability to job applying for.
