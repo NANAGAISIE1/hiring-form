@@ -301,11 +301,8 @@ export function ApplicationForm() {
           )}
         />
         <Button type="submit" className="m-auto w-full">
-          Submit
-        </Button>
-        <Button disabled className="m-auto w-full">
           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          Please wait
+          Submit
         </Button>
       </form>
     </Form>
