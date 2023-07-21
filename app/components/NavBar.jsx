@@ -2,9 +2,9 @@ import React from "react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
-export function ModuleButton({ variant, href, title }) {
+export function ModuleButton({ href, title }) {
   return (
-    <Button asChild variant={`${variant}`}>
+    <Button asChild>
       <Link href={`${href}`}>{title}</Link>
     </Button>
   );
@@ -15,7 +15,7 @@ const NavBar = () => {
     <header className="fixed justify-between w-full shadow-lg bg-slate-100/95">
       <nav className="justify-between flex w-full p-4 items-center">
         <h1>Logo</h1>
-        <ModuleButton variant="destructive" href="#apply" title="Apply" />
+        <ModuleButton href="#apply" title="Apply" />
       </nav>
     </header>
   );

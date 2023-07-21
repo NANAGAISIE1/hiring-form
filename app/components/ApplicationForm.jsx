@@ -23,6 +23,15 @@ import {
   FormLabel,
   FormMessage,
 } from "./ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 
 const formSchema = z.object({
   firstName: z.string(),
@@ -85,27 +94,25 @@ export function ApplicationForm() {
       >
         <FormField
           control={form.control}
-          name="username"
+          name="firstname"
           render={({ field }) => (
             <FormItem>
               <FormLabel className="hidden">First name</FormLabel>
               <FormControl>
                 <Input placeholder="First name" {...field} />
               </FormControl>
-              <FormMessage />
             </FormItem>
           )}
         />
         <FormField
           control={form.control}
-          name="username"
+          name="lastname"
           render={({ field }) => (
             <FormItem>
               <FormLabel className="hidden">Last name</FormLabel>
               <FormControl>
                 <Input placeholder="Last name" {...field} />
               </FormControl>
-              <FormMessage />
             </FormItem>
           )}
         />
@@ -121,7 +128,7 @@ export function ApplicationForm() {
                     <Button
                       variant="outline"
                       className={cn(
-                        "w-[240px] pl-3 text-left font-normal",
+                        "m-auto pl-3 text-left font-normal w-full",
                         !field.value && "text-muted-foreground"
                       )}
                     >
@@ -146,91 +153,134 @@ export function ApplicationForm() {
                   />
                 </PopoverContent>
               </Popover>
-              <FormMessage />
             </FormItem>
           )}
         />
         <FormField
           control={form.control}
-          name="username"
+          name="phoneNumber"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="hidden">First name</FormLabel>
+              <FormLabel className="hidden">Phone Number</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="Phone Number" {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
-              <FormMessage />
+              <FormDescription></FormDescription>
             </FormItem>
           )}
         />
         <FormField
           control={form.control}
-          name="username"
+          name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="hidden">First name</FormLabel>
+              <FormLabel className="hidden">Email</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="Email" {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
-              <FormMessage />
             </FormItem>
           )}
         />
         <FormField
           control={form.control}
-          name="username"
+          name="homeAddress"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="hidden">First name</FormLabel>
+              <FormLabel className="hidden">Home Address</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="Home Address" {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
-              <FormMessage />
             </FormItem>
           )}
         />
         <FormField
           control={form.control}
-          name="username"
+          name="state"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="hidden">First name</FormLabel>
+              <FormLabel className="hidden">State</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="State" {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
-              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <div className="flex justify-between w-full grid-cols-2">
+          <FormField
+            control={form.control}
+            name="city"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="hidden">City</FormLabel>
+                <FormControl>
+                  <Input placeholder="City" {...field} />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="zipCode"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="hidden">Zip Code</FormLabel>
+                <FormControl>
+                  <Input placeholder="Zip Code" {...field} />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+        </div>
+        <FormField
+          control={form.control}
+          name="typeOfWork"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Work Type (Part-time or Full-time)</FormLabel>
+              <Select>
+                <SelectTrigger className="m-auto w-full">
+                  <SelectValue placeholder="Select work type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>Work Type</SelectLabel>
+                    <SelectItem value="part-time">Part-Time</SelectItem>
+                    <SelectItem value="full-time">Full-Time</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
             </FormItem>
           )}
         />
         <FormField
           control={form.control}
-          name="username"
+          name="frontId"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="hidden">First name</FormLabel>
+              <FormLabel className="Valid Identification Card (Front)">
+                Valid Identification Card (Front)
+              </FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
-              <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit" className="flex justify-center">
+        <FormField
+          control={form.control}
+          name="backId"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="Valid Identification Card (Back)">
+                Valid Identification Card (Back)
+              </FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+        <Button type="submit" className="m-auto w-full">
           Submit
         </Button>
       </form>

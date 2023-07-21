@@ -22,7 +22,6 @@ export default function Home() {
         <p className="mt-2">
           <ModuleButton
             href="#apply"
-            variant="destructive"
             title={
               <>
                 <span>Get Started&nbsp;</span>
