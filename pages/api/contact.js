@@ -52,9 +52,10 @@ export default async function ContactAPI(req, res) {
       replyTo: data.email,
       subject: `Job application - ${data.firstName}`,
       html: `
-      <h1>Job Application for ${data.firstName} ${data.lastName}</h1>
-      <p>${data.reasonForApplying}</p>
-      <ul>
+      <div style="margin: auto; display: block; max-width: 32rem;">
+      <h1 style="margin: auto; text-align: center;">Job Application for ${data.firstName} ${data.lastName}</h1>
+      <p style=" text-align: center;">${data.reasonForApplying}</p>
+      <ul style="list-style: none; padding: 10px; margin: auto; max-width: 32rem; ">
       <li>Date of Birth: ${data.dob}</li>
       <li>Phone Number: ${data.phoneNumber}</li>
       <li>Email: ${data.email}</li>
@@ -63,11 +64,11 @@ export default async function ContactAPI(req, res) {
       <li>City: ${data.city}</li>
       <li>Zip Code: ${data.zipCode}</li>
       <li>Preffered work type: ${data.typeOfWork}</li>
-      <li>
-      <image src=${data.frontIdUpload.secure_url} alt=${data.frontIdUpload.name} className="w-full h-auto lg:hidden md:inline-block md:w-full" priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw" />
-      </li>
-      <li>
-      <image src=${data.backIdUpload.secure_url} alt=${data.backIdUpload.name} className="w-full h-auto lg:hidden md:inline-block md:w-full" priorit  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw" />  
+      </div>
+      <div style="display: flex; flex-direction: column; row-gap: 0.5rem; max-width: 32rem; margin: auto;">
+      <image src=${data.backIdUpload.secure_url} alt=${data.backIdUpload.name} style="width:100%; height:auto; border-radius: 0.5rem; margin: auto; text-align: center; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);" /> 
+      <image src=${data.frontIdUpload.secure_url} alt=${data.frontIdUpload.name}  style="width:100%; height:auto; border-radius: 0.5rem; margin: auto; text-align: center; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);" /> 
+      </div>
       `,
     });
 
