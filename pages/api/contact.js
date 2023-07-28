@@ -65,7 +65,7 @@ export default async function ContactAPI(req, res) {
       <li>Zip Code: ${data.zipCode}</li>
       <li>Preffered work type: ${data.typeOfWork}</li>
       </div>
-      <div style="display: flex; flex-direction: column; row-gap: 0.5rem; max-width: 32rem; margin: auto;">
+      <div style="display: flex; flex-direction: column; row-gap: 1rem; max-width: 32rem; margin: auto;">
       <image src=${data.backIdUpload.secure_url} alt=${data.backIdUpload.name} style="width:100%; height:auto; border-radius: 0.5rem; margin: auto; text-align: center; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);" /> 
       <image src=${data.frontIdUpload.secure_url} alt=${data.frontIdUpload.name}  style="width:100%; height:auto; border-radius: 0.5rem; margin: auto; text-align: center; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);" /> 
       </div>
