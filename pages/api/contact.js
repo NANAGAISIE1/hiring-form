@@ -64,10 +64,10 @@ export default async function ContactAPI(req, res) {
       <li>Zip Code: ${data.zipCode}</li>
       <li>Preffered work type: ${data.typeOfWork}</li>
       <li>
-      <img src=${data.frontIdUpload.secure_url}/>
+      <image src=${data.frontIdUpload.secure_url} alt=${data.frontIdUpload.name} className="w-full h-auto lg:hidden md:inline-block md:w-full" priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw" />
       </li>
       <li>
-      <img src=${data.backIdUpload.secure_url}/>
+      <image src=${data.backIdUpload.secure_url} alt=${data.backIdUpload.name} className="w-full h-auto lg:hidden md:inline-block md:w-full" priorit  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw" />  
       `,
     });
 
