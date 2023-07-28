@@ -2,12 +2,13 @@
 import * as React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { DayPicker } from "react-day-picker";
+import { subYears } from "date-fns";
 
 import { cn } from "../../lib/utils";
 import { buttonVariants } from "./button";
 
 function Calendar({ className, classNames, showOutsideDays = true, ...props }) {
-  const currentYear = new Date().getFullYear();
+  const currentYear = subYears(new Date(), 18).getFullYear();
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}

@@ -40,7 +40,7 @@ export const formSchema = z.object({
     .string()
     .nonempty({ message: "Residential address is required" })
     .max(200, { message: "Residential address is too long" })
-    .regex(/^[a-zA-Z0-9\s,.-/#]*$/, {
+    .regex(/[A-Za-z0-9'\.\-\s\,\/]/, {
       message: "Invalid characters in residential address",
     })
     .min(5, { message: "Residential address is too short" }),

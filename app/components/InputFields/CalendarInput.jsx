@@ -1,6 +1,6 @@
-import { useFormContext, Controller } from "react-hook-form";
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
+import { useState } from "react";
 
 import { cn } from "../../lib/utils";
 
@@ -15,9 +15,7 @@ import {
   FormMessage,
 } from "../ui/form";
 
-const CalendarField = ({ name, formLabel }) => {
-  const { control } = useFormContext();
-
+const CalendarField = ({ name, formLabel, control }) => {
   return (
     <FormField
       control={control}

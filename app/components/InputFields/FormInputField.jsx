@@ -57,7 +57,8 @@ function FormInputField({
               />
             )}
           </FormControl>
-          {errors && <FormMessage />}
+          {/* Conditionally render the error message */}
+          <FormMessage />
         </FormItem>
       )}
     />
@@ -90,7 +91,8 @@ function WorkTypeSelectField({ name, label, workTypes, errors, control }) {
               </SelectGroup>
             </SelectContent>
           </Select>
-          {errors[name] && <FormMessage />}
+          {/* Conditionally render the error message */}
+          <FormMessage />
           <FormDescription>Choose your preferred option</FormDescription>
         </FormItem>
       )}

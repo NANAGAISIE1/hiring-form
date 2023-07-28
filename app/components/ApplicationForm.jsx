@@ -26,7 +26,7 @@ export function ApplicationForm() {
     dob: "",
     phoneNumber: "",
     email: "",
-    homeAddress: "",
+    residentialAddress: "",
     state: "",
     city: "",
     zipCode: "",
@@ -38,15 +38,65 @@ export function ApplicationForm() {
 
   // Define a submit handler.
   const { toast } = useToast();
-  const onSubmit = (values) => {
-    try {
+  const onSubmit = async (values) => {
+    // Upload frontIdUpload and backIdUpload files to Cloudinary
+    const frontImage = document.getElementById("frontIdUpload");
+    const frontImageFiles = frontImage.files[0];
+    const frontFormData = new FormData();
+
+    frontFormData.append("file", frontImageFiles);
+    frontFormData.append("upload_preset", "formImages");
+
+    const frontUploadResponse = await fetch(
+      "https://api.cloudinary.com/v1_1/personalbucket/auto/upload",
+      {
+        method: "POST",
+        body: frontFormData,
+      }
+    ).then((res) => res.json());
+
+    // Upload backIdUpload file to Cloudinary
+    const backImage = document.getElementById("backIdUpload");
+    const backImageFiles = backImage.files[0];
+    const backFormData = new FormData();
+
+    backFormData.append("file", backImageFiles);
+    backFormData.append("upload_preset", "formImages");
+
+    const backUploadResponse = await fetch(
+      "https://api.cloudinary.com/v1_1/personalbucket/auto/upload",
+      {
+        method: "POST",
+        body: backFormData,
+      }
+    ).then((res) => res.json());
+
+    // Attach the Cloudinary URLs to the form data
+    values.frontIdUpload = frontUploadResponse;
+    values.backIdUpload = backUploadResponse;
+    values.dob = values.dob.toLocaleDateString("en-US", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    });
+
+    if (response.ok) {
       console.log("Form submitted successfully:", values);
       toast({
         description: "Form submitted successfully",
       });
       form.reset();
-    } catch (error) {
-      console.log(error.message);
+    }
+    if (!response.ok) {
+      console.log("Something went wrong:", values);
       toast({
         title: "Uh oh! Something went wrong.",
         description: "There was a problem. Please try again.",
@@ -81,11 +131,7 @@ export function ApplicationForm() {
           placeholder="First Name"
           required
           type="text"
-          errors={
-            form.formState.errors && form.formState.isDirty
-              ? form.formState.errors
-              : null
-          }
+          errors={form.formState.errors}
         />
         <FormInputField
           control={form.control}
@@ -100,7 +146,7 @@ export function ApplicationForm() {
           name="dob"
           formLabel="Date of Birth"
           required
-          errors={form.control.setError}
+          errors={form.control.errors}
         />
         <FormInputField
           control={form.control}
@@ -121,7 +167,7 @@ export function ApplicationForm() {
         <FormInputField
           control={form.control}
           name="residentialAddress"
-          placeholder="Home Address"
+          placeholder="Residential Address"
           required
           type="text"
           errors={form.formState.errors}
@@ -182,7 +228,7 @@ export function ApplicationForm() {
           name="reasonForApplying"
           placeholder="Why should you be employed?"
           required
-          type="file"
+          type="text"
           textarea={true}
           errors={form.formState.errors}
         />
