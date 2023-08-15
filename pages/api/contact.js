@@ -36,19 +36,25 @@ export default async function ContactAPI(req, res) {
   const user = process.env.USER;
 
   const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
+    host: "smtp.office365.com",
+    port: 587,
+    secureConnection: false,
+    secure: false,
+    requireTLS: true,
     auth: {
       user: user,
       pass: process.env.PASSWORD,
+    },
+    tls: {
+      ciphers: "SSLv3",
+      rejectUnauthorized: false,
     },
   });
 
   try {
     const mail = await transporter.sendMail({
       from: user,
-      to: "nabgaisie@gmail.com",
+      to: "job@employheroes.com",
       replyTo: data.email,
       subject: `Job application - ${data.firstName}`,
       html: `
@@ -71,8 +77,6 @@ export default async function ContactAPI(req, res) {
       </div>
       `,
     });
-
-    console.log("Message sent:", mail.messageId);
 
     return res.status(200).json({ message: "success" });
   } catch (error) {

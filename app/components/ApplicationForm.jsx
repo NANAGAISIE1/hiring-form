@@ -89,14 +89,12 @@ export function ApplicationForm() {
     });
 
     if (response.ok) {
-      console.log("Form submitted successfully:", values);
       toast({
         description: "Form submitted successfully",
       });
       form.reset();
     }
     if (!response.ok) {
-      console.log("Something went wrong:", values);
       toast({
         title: "Uh oh! Something went wrong.",
         description: "There was a problem. Please try again.",
