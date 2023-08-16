@@ -14,8 +14,7 @@ const Footer = () => {
       <footer className="w-full bg-black/95 text-white border-t-2 border-white">
         <span className="justify-center text-sm p-1 w-full flex">
           {" "}
-          &copy; {new Date().getFullYear()} Company Ventures. All Rights
-          Reserved.
+          &copy; {new Date().getFullYear()} Employ Heroes. All Rights Reserved.
         </span>
       </footer>
     </>
